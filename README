@@ -36,8 +36,23 @@
 3. How to Clean
 
 		$ make ARCH=arm64 distclean
+		
+4. Futute upgrades
+   Patch source: https://github.com/android-linux-stable/msm-3.18
+   Look for commits "Merge 3.18.xx into android-3.18"
+   Download it as patch....wget not works on SSL, use aria2c, ex. of 3.18.67 to 3.18.68
+   
+   aria2c https://github.com/android-linux-stable/msm-3.18/commit/f5d87913fec51e95b13e349293f5cc3b96602f23.patch or even ----.diff
+   
+   Rename file as 3.18.68.patch into root of kernel sourcecode
+   Check patch and apply it: 
+   git apply --check 3.18.68.patch
+   git am < 3.18.68.patch OR patch -p1 < 3.18.68.patch
+   
+  
 ################################################################################
 This package make out Image.gz-dtb only, you have to get ramdisk and add kernel cmdline to generate a total kernel.img before replace your phone's bootimage.
 
 In AIKernel.zip, we got repacking tool from osmosis. Place Image.gz-dtb to split_img folder. Rename it as KERNEL.img-zImage and use repackimg.bat (yes, it is Windows version).
-Current files are for rom 8.0.0.147 c432 from 2020-02. If you use another version of rom, change file KERNEL.img-oslevel. Tested and working!!!
+Current files are for rom 8.0.0.147 c432 from 2020-02. If you use another version of rom, change file KERNEL.img-oslevel.
+Tested and working!!!
